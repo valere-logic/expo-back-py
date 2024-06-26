@@ -1,8 +1,7 @@
 import streamlit as st
-
+import services.chatbot as chatbot
 
 st.title("Llama 3 chat")
-
 
 # Initialize chat history
 if "messages" not in st.session_state:
@@ -22,14 +21,8 @@ if prompt := st.chat_input("What is up?"):
         st.markdown(prompt)
 
     with st.chat_message("assistant"):
-        stream = client.chat.completions.create(
-            model=st.session_state["openai_model"],
-            messages=[
-                {"role": m["role"], "content": m["content"]}
-                for m in st.session_state.messages
-            ],
-            stream=True,
-        )
-        response = st.write_stream(stream)
-    st.session_state.messages.append({"role": "assistant", "content": response})
+        stream = chatbot.getAnswer(prompt)
+        response = st.write(stream)
+        
+    st.session_state.messages.append({"role": "assistant", "content": stream})
 
