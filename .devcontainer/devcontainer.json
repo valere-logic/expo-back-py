@@ -1,21 +1,18 @@
 {
-    "image" : "mcr.microsoft.com/devcontainers/python:1-3.11-bullseye",
-    "name": "backend with python",
-    "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
-    "customizations": {
-        "vscode": {
-            "extensions": [
-                "ms-python.python",
-                "GitHub.copilot",
-                "AykutSarac.jsoncrack-vscode",
-                "mhutchie.git-graph"
-            ]
-        }
-    },
-    "features": {
-        "ghcr.io/prulloac/devcontainer-features/ollama:1": {}
-    },
-    "forwardPorts": [8000],
-    "remoteUser": "root",
-    "postStartCommand": "sh .devcontainer/postCreateCommand.sh"
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "AykutSarac.jsoncrack-vscode",
+        "charliermarsh.ruff",
+        "ms-python.python",
+        "mhutchie.git-graph"
+      ]
+    }
+  },
+  "features": {},
+  "image": "mcr.microsoft.com/devcontainers/python:1-3.11-bullseye",
+  "name": "Uniandes expo devcontainer",
+  "postStartCommand": "sh .devcontainer/postCreateCommand.sh",
+  "remoteUser": "root",
+  "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}"
 }
