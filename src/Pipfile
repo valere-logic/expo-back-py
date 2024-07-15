@@ -7,6 +7,9 @@ name = "pypi"
 langchain-openai = "*"
 langchain-community = "*"
 wikipedia = "*"
+pypdf = "*"
+faiss-cpu = "*"
+tiktoken = "*"
 
 [dev-packages]
 ruff = "*"

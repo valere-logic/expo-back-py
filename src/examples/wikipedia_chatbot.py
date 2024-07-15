@@ -6,6 +6,7 @@ from langchain_community.utilities import WikipediaAPIWrapper
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_openai import ChatOpenAI
 
+# Inicializamos el modelo de chat (Usaremos OpenAI para el ejemplo porque es el más popular y fácil de usar)
 llm = ChatOpenAI(model="gpt-3.5-turbo", temperature=0.3)
 
 # Configuraremos la herramienta de Wikipedia para que el chatbot pueda buscar información en Wikipedia.
@@ -58,6 +59,7 @@ Thought: {agent_scratchpad}"""
 # Creamos nuestro prompt de chat
 prompt = ChatPromptTemplate.from_template(template=TEMPLATE)
 
+# Creamos el agente y el ejecutor del chatbot
 agent = create_react_agent(llm, tools, prompt)
 wikipedia_chatbot = AgentExecutor(
     agent=agent,

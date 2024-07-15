@@ -168,3 +168,8 @@ poetry.toml
 
 # LSP config files
 pyrightconfig.json
+
+### Project specific ###
+# Ignore files except of the README.md in the files directory
+src/files/*
+!src/files/README.md
