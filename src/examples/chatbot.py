@@ -4,22 +4,26 @@ from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
 from langchain_core.runnables.history import RunnableWithMessageHistory
 from langchain_openai import ChatOpenAI
 
-# Inicializamos el modelo de chat (Usaremos OpenAI para el ejemplo porque es el más popular y fácil de usar)
+# Inicializamos el modelo de chat (Usaremos OpenAI para el ejemplo porque es el
+# más popular y fácil de usar)
 llm = ChatOpenAI(
     model="gpt-3.5-turbo",
     temperature=0.3,
 )
 
-# Creamos nuestra memoria de mensajes. Usaremos Streamlit para mostrar los mensajes en la interfaz de usuario.
+# Creamos nuestra memoria de mensajes. Usaremos Streamlit para mostrar los mensajes
+# en la interfaz de usuario.
 history = ChatMessageHistory()
 
 # Creamos nuestra plantilla inicial para que el chatbot sepa cómo responder
 TEMPLATE = """
-Eres un experto en interpretar el corazón y el espíritu de una pregunta y responder de manera perspicaz.
+Eres un experto en interpretar el corazón y el espíritu de una pregunta y
+responder de manera perspicaz.
 
 PASOS
 1. Comprende profundamente lo que se pregunta.
-2. Crea un modelo mental completo de la entrada y la pregunta en una pizarra virtual en tu mente.
+2. Crea un modelo mental completo de la entrada y la pregunta en una pizarra
+virtual en tu mente.
 3. Responde a la pregunta en 3-5 viñetas.
 
 INSTRUCCIONES
@@ -40,7 +44,8 @@ prompt = ChatPromptTemplate.from_messages(
     ]
 )
 
-# Encadenamos el prompt con el modelo de chat usando el Langchain Expression
+# Encadenamos el prompt con el modelo de chat usando el LangChain Expression
+# Language (LCEL) - piénsenlo como los pipes en Bash.
 chain = prompt | llm
 
 # Agregamos el historial de mensajes a la cadena

@@ -2,6 +2,8 @@ import argparse
 import cmd
 
 from examples.chatbot import chatbot
+from examples.chatbot import history as chatbot_history
+from examples.document_chatbot import rag_chatbot
 from examples.wikipedia_chatbot import wikipedia_chatbot
 from langchain.globals import set_debug
 
@@ -58,13 +60,13 @@ class ChatbotCli(cmd.Cmd):
     def _add_history_subparser(self):
         history_parser = self.subparsers.add_parser(
             "history",
-            usage="hi[story] [-h] {simple,wikipedia,document}",
+            usage="hi[story] [-h] simple",
             description="View the chatbot's history.",
         )
         history_parser.add_argument(
             "example",
             help="Chatbot example",
-            choices=["simple", "wikipedia", "document"],
+            choices=["simple"],
         )
         return history_parser
 
@@ -90,6 +92,9 @@ class ChatbotCli(cmd.Cmd):
                 config={"configurable": {"session_id": "wikipedia"}},
             )
             print(answer["output"])
+        elif args.example == "document":
+            for chunk in rag_chatbot.stream(prompt):
+                print(chunk, end="", flush=True)
 
     def do_history(self, arg):
         if not arg:
@@ -100,7 +105,8 @@ class ChatbotCli(cmd.Cmd):
         except SystemExit:
             return
 
-        print(args)
+        if args.example == "simple":
+            print(chatbot_history)
 
     def do_quit(self, arg):
         return True
